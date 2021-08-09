@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "weatherapp",
-    "slug": "weatherapp",
+    "name": "bleepapp",
+    "slug": "bleepapp",
     "platforms": [
       "ios",
       "android",
