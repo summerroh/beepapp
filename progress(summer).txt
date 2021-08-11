@@ -1,5 +1,55 @@
-2021.08.09
+========================2021.08.09===============================================
 
 현재 배포중인 치킨앱을 이 react native앱으로 재개발해서 업데이트하고 포트폴리오로도 사용하기
 
-v 노드js랑 npm, expo 설치함
+√-----------노드js랑 npm, expo 설치함
+
+√-----------expo upgrade 실행함
+PS E:\projects\BeepApp> expo upgrade
+Your git working tree is clean
+To revert the changes after this command completes, you can run the following:
+  git clean --force && git reset --hard
+We found an existing expo-cli instance running for this project and closed it to continue.
+
+√ You are already using the latest SDK version. Do you want to run the update anyways? This may be useful to ensure that all of your packages are set to the correct version. ... yes
+
+√ Would you like to upgrade the Expo app in the Android emulator? ... yes
+
+no devices connected
+The upgrade of your Android client didn't go as planned. You might have to reinstall it manually with expo client:install:android.
+
+√ Validated configuration.
+√ No additional changes necessary to app.json config.
+
+√ Updated known packages to compatible versions.
+√ Removed package-lock.json and deleted node_modules.
+√ Installed node_modules and rebuilt package-lock.json.
+√ Cleared packager cache.
+√ Validated project
+
+👏 Automated upgrade steps complete.
+...but this doesn't mean everything is done yet!
+
+✅ The following packages were updated:
+expo-linear-gradient, expo-location, react-native, react, react-dom, @babel/core, react-native-web, babel-preset-expo, expo
+
+🚨 The following packages were not updated. You should check the READMEs for those repositories to determine what version is compatible with your new set of packages:
+@react-spring/zdog, axios, prop-types, react-native-sound
+
+Please refer to the release notes for information on any further required steps to update and information about breaking changes:
+https://blog.expo.io/expo-sdk-42-579aee2348b6
+
+-----------openweathermap token expired
+이거 그냥 지워야할듯?
+
+========================2021.08.11===============================================
+
+√ beep버튼누르면 소리나오게 하는중
+√ null is not an object (evaluating 'RNSound.IsAndroid') 에러때문에 ㅠㅠㅠ Sound가 import가 안됨
+-expo managed 로 개발중이기때문에 react native인 react native sound가 작동이안되면서 에러뜨는거엿음
+
+√ react native sound 대신에 expo install expo-av 를 사용하기로 함
+
+√ 일단 버튼 누르면 알람 뜨게는 함.. 오디오를 어떻게나오는지알아낸후 playsound 함수에 넣으면될듯
+
+소리가 안남
