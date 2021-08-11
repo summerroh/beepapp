@@ -33,6 +33,7 @@ export default class Bleep extends Component {
     }
 
 //playing sound starts
+//tutorial: https://www.youtube.com/watch?v=HCvp2fZh--A
     async componentDidMount() {
       Audio.setAudioModeAsync({
         allowsRecordingIOS: false,
@@ -40,7 +41,7 @@ export default class Bleep extends Component {
         playsInSilentModeIOS: true,
         interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DUCK_OTHERS,
         shouldDuckAndroid: true,
-        staysActiveInBackground: true,
+        staysActiveInBackground: false,
         playThroughEarpieceAndroid: true
       });
 
