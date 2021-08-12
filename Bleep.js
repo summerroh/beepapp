@@ -48,17 +48,24 @@ export default class Bleep extends Component {
     playSound() {
       // if(this.state.pressing) {alert("Bleeeeeep!!")};
       this.sound.playAsync();
-      // alert("Bleeeeeep!!")
-      console.log(this.state.pressing)
     };
 
     stopSound() {
       this.sound.stopAsync();
-      console.log(this.state.pressing)
     }
 //playing sounds finish
 
+    pressin=() => {
+      this.setState({ pressing: !this.state.pressing })
+      this.playSound()
+    }
 
+    pressout=() => {
+      this.setState({ pressing: !this.state.pressing })
+      this.stopSound()
+    }
+
+    
     render() {
       return (
           <View style={styles.container}>
@@ -67,8 +74,8 @@ export default class Bleep extends Component {
               <View style={styles.contents}>
                   {/* <Text style={styles.text}>Hold to Bleep</Text> */}
                   <TouchableWithoutFeedback  
-                    onPressIn={ () => this.setState({ pressing: !this.state.pressing }),this.playSound.bind(this) } 
-                    onPressOut={ () => this.setState({ pressing: !this.state.pressing }),this.stopSound.bind(this) } >    
+                    onPressIn={ () => this.pressin() } 
+                    onPressOut={ () => this.pressout() } >    
                     {this.renderImage()}
                   </TouchableWithoutFeedback >
               </View>
