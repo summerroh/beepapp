@@ -1,17 +1,8 @@
 import React, {Component} from 'react';
-
-// import * as React from 'react';
-
 import { StyleSheet, Text, View, StatusBar, Image, ImageBackground, TouchableWithoutFeedback , Alert, Button } from 'react-native';
-// import Sound from 'react-native-sound';
 import { Audio } from 'expo-av';
 import button from './assets/button.png';
 import buttonPressed from './assets/button_pressed.png';
-
-
-
-
-
 
 export default class Bleep extends Component {
 
@@ -56,12 +47,16 @@ export default class Bleep extends Component {
    
     playSound() {
       // if(this.state.pressing) {alert("Bleeeeeep!!")};
-
       this.sound.playAsync();
-      alert("Bleeeeeep!!")
+      // alert("Bleeeeeep!!")
+      console.log(this.state.pressing)
     };
-//playing sounds finish
 
+    stopSound() {
+      this.sound.stopAsync();
+      console.log(this.state.pressing)
+    }
+//playing sounds finish
 
 
     render() {
@@ -72,16 +67,10 @@ export default class Bleep extends Component {
               <View style={styles.contents}>
                   {/* <Text style={styles.text}>Hold to Bleep</Text> */}
                   <TouchableWithoutFeedback  
-                    onPressIn={ () => this.setState({ pressing: !this.state.pressing }) } 
-                    onPressOut={ () => this.setState({ pressing: !this.state.pressing }) } >    
+                    onPressIn={ () => this.setState({ pressing: !this.state.pressing }),this.playSound.bind(this) } 
+                    onPressOut={ () => this.setState({ pressing: !this.state.pressing }),this.stopSound.bind(this) } >    
                     {this.renderImage()}
                   </TouchableWithoutFeedback >
-
-                  <Button
-                  title='Play Sound'
-                  color='#3CBBB1'
-                  onPress={this.playSound.bind(this)} />
-
               </View>
             </ImageBackground>  
           </View>
