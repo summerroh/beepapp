@@ -20,7 +20,7 @@ export default class Bleep extends Component {
     renderImage()  {
       var imgSource = this.state.pressing? button : buttonPressed;
       return (
-        <Image source={ imgSource }/> );
+        <Image source={ imgSource } style={styles.image}/> );
     }
 
 //playing sound starts
@@ -73,11 +73,11 @@ export default class Bleep extends Component {
             <ImageBackground source={require('./assets/metal_background.jpg')} style={styles.backgroundimage}>
               <View style={styles.contents}>
                   {/* <Text style={styles.text}>Hold to Bleep</Text> */}
-                  <TouchableWithoutFeedback  
+                  <TouchableWithoutFeedback
                     onPressIn={ () => this.pressin() } 
                     onPressOut={ () => this.pressout() } >    
                     {this.renderImage()}
-                  </TouchableWithoutFeedback >
+                  </TouchableWithoutFeedback>
               </View>
             </ImageBackground>  
           </View>
@@ -104,7 +104,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "column"
   },
-  image: {
+  image:
+  {
+    // Setting up image width.
+    width: 204,
+    // Setting up image height.
+    height: 204
   },
   text: {
     color: "white",
