@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, StatusBar } from 'react-native';
 export default function Loading() {
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#00000000" translucent={true}/>
+      <StatusBar barStyle="light-content" backgroundColor="#1a1a1a" translucent={true}/>
         <Text style={styles.text}>Loading</Text>
     </View>
   );
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
       justifyContent: "flex-end",
       paddingHorizontal: 30,
       paddingVertical: 100,
-      backgroundColor: "#FDF6AA"
+      backgroundColor: "#1a1a1a"
   },
   text: {
     color: "#2c2c2c",
