@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "bleepapp",
-    "slug": "bleepapp",
+    "name": "Bleep",
+    "slug": "Bleep",
     "platforms": [
       "ios",
       "android",
@@ -22,7 +22,13 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.summerroh.bleep",
+      "buildNumber": "1.0.0",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.summerroh.bleep",
+      "versionCode": 1
     }
   }
 }
