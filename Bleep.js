@@ -33,7 +33,7 @@ export default class Bleep extends Component {
         interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DUCK_OTHERS,
         shouldDuckAndroid: true,
         staysActiveInBackground: false,
-        playThroughEarpieceAndroid: true
+        playThroughEarpieceAndroid: false
       });
 
       this.sound = new Audio.Sound()
