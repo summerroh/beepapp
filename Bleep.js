@@ -1,31 +1,23 @@
-import React, {Component} from 'react';
-import { StyleSheet, Text, View, StatusBar, Image, ImageBackground, TouchableWithoutFeedback , Alert, Button } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import { StyleSheet, View, StatusBar, Image, ImageBackground, TouchableWithoutFeedback } from 'react-native';
 import { Audio } from 'expo-av';
 import button from './assets/button.png';
 import buttonPressed from './assets/button_pressed.png';
+import { AdMobBanner } from 'expo-ads-admob';
 
-export default class Bleep extends Component {
+function Bleep() {
+    const [pressing, setPressing] = useState(false);
+    const [sound, setSound] = useState();
 
-    constructor() {
-      super();
-      this.state = { 
-        pressing: true
-      };
-    }
-
-    static navigationOptions = {
-      header: null,
-    };
-
-    renderImage()  {
-      var imgSource = this.state.pressing? button : buttonPressed;
+    const renderImage = () => {
+      let imgSource = pressing? buttonPressed : button;
       return (
         <Image source={ imgSource } style={styles.image}/> );
     }
 
-//playing sound starts
+//sound logic starts
 //tutorial: https://www.youtube.com/watch?v=HCvp2fZh--A
-    async componentDidMount() {
+    useEffect(()=>{
       Audio.setAudioModeAsync({
         allowsRecordingIOS: false,
         interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
@@ -35,63 +27,71 @@ export default class Bleep extends Component {
         staysActiveInBackground: false,
         playThroughEarpieceAndroid: false
       });
+      loadSound();
+    },[])
 
-      this.sound = new Audio.Sound()
-
-      const status = {
-        shouldPlay: false
-      };
-
-      this.sound.loadAsync(require('./assets/bleepshort.mp3'), status, false);
+    const loadSound = async () => {
+      const { sound } = await Audio.Sound.createAsync(
+        require('./assets/bleepshort.mp3')
+      );
+      setSound(sound);
     }
-   
-    playSound() {
-      // if(this.state.pressing) {alert("Bleeeeeep!!")};
-      this.sound.playAsync();
+    
+    const playSound = async () => {
+     await sound.playAsync(); 
     };
 
-    stopSound() {
-      this.sound.stopAsync();
+    const stopSound = async () => {
+      await sound.stopAsync(); 
     }
-//playing sounds finish
+  //sound logic finish
 
-    pressin=() => {
-      this.setState({ pressing: !this.state.pressing })
-      this.playSound()
-    }
-
-    pressout=() => {
-      this.setState({ pressing: !this.state.pressing })
-      this.stopSound()
+    const pressin = () => {
+      setPressing(!pressing)
+      playSound()
     }
 
+    const pressout = () => {
+      setPressing(!pressing)
+      stopSound()
+    }
     
-    render() {
-      return (
-          <View style={styles.container}>
-            <StatusBar barStyle="light-content" backgroundColor="#00000000" translucent={true}/>
-            <ImageBackground source={require('./assets/metal_background.jpg')} style={styles.backgroundimage}>
-              <View style={styles.contents}>
-                  {/* <Text style={styles.text}>Hold to Bleep</Text> */}
-                  <TouchableWithoutFeedback
-                    onPressIn={ () => this.pressin() } 
-                    onPressOut={ () => this.pressout() } >    
-                    {this.renderImage()}
-                  </TouchableWithoutFeedback>
-              </View>
-            </ImageBackground>  
-          </View>
+    return (
+        <View style={styles.container}>
+          <StatusBar barStyle="light-content" backgroundColor="#00000000" translucent={true}/>
+          <ImageBackground source={require('./assets/metal_background.jpg')} style={styles.backgroundimage}>
+            <View style={styles.contents}>
+                {/* <Text style={styles.text}>Hold to Bleep</Text> */}
+                <TouchableWithoutFeedback
+                  onPressIn={ () => pressin() } 
+                  onPressOut={ () => pressout() } >    
+                  {renderImage()}
+                </TouchableWithoutFeedback>
+
+            {/* // Display a banner ad */}
+            <AdMobBanner
+              style={{position: 'absolute',
+                      bottom: 0,
+                      alignSelf: 'center',
+                    }}
+              bannerSize="banner"
+              adUnitID="ca-app-pub-7215370286680655/7769940540"
+              servePersonalizedAds={false} // true or false
+              />
+              
+            </View>
+
+          </ImageBackground>  
+        </View>
       );
-      }
-      }
+      };
+      
+      export default Bleep;
 
 const styles = StyleSheet.create({
   container: {
       flex: 1,
       flexDirection: "column"
-    //   paddingHorizontal: 30,
-    //   paddingVertical: 100,
-    //   backgroundColor: "pink"
   },
   backgroundimage: {
     flex: 1,

@@ -29,7 +29,18 @@
     "android": {
       "package": "com.summerroh.bleep",
       "permissions": [],
-      "versionCode": 2
-    }
+      "versionCode": 2,
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-7215370286680655~7120215615"
+      }
+    },
+    "plugins": [
+      [
+        "expo-ads-admob",
+        {
+          "userTrackingPermission": "This identifier will be used to deliver personalized ads to you."
+        }
+      ]
+    ]
   }
 }
