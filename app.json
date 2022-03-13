@@ -29,7 +29,7 @@
     "android": {
       "package": "com.summerroh.bleep",
       "permissions": [],
-      "versionCode": 2,
+      "versionCode": 3,
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-7215370286680655~7120215615"
       }

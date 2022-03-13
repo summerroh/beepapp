@@ -8,11 +8,15 @@ import { AdMobBanner } from 'expo-ads-admob';
 function Bleep() {
     const [pressing, setPressing] = useState(false);
     const [sound, setSound] = useState();
-
+    
     const renderImage = () => {
       let imgSource = pressing? buttonPressed : button;
       return (
-        <Image source={ imgSource } style={styles.image}/> );
+        <View>
+          <Image source={ button } style={[styles.image, {position: 'absolute'}]}/>
+          <Image source={ imgSource } style={styles.image}/>
+        </View>
+      );
     }
 
 //sound logic starts
@@ -61,7 +65,7 @@ function Bleep() {
           <StatusBar barStyle="light-content" backgroundColor="#00000000" translucent={true}/>
           <ImageBackground source={require('./assets/metal_background.jpg')} style={styles.backgroundimage}>
             <View style={styles.contents}>
-                {/* <Text style={styles.text}>Hold to Bleep</Text> */}
+        
                 <TouchableWithoutFeedback
                   onPressIn={ () => pressin() } 
                   onPressOut={ () => pressout() } >    
