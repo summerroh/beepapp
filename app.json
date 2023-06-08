@@ -16,7 +16,8 @@
       "backgroundColor": "#1a1a1a"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/3288df11-6e1a-4ffa-ad1c-bfebab6c0f9c"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -28,19 +29,26 @@
     },
     "android": {
       "package": "com.summerroh.bleep",
-      "permissions": [],
+      "permissions": [
+        "com.google.android.gms.permission.AD_ID"
+      ],
       "versionCode": 3,
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-7215370286680655~7120215615"
       }
     },
-    "plugins": [
-      [
-        "expo-ads-admob",
-        {
-          "userTrackingPermission": "This identifier will be used to deliver personalized ads to you."
-        }
-      ]
-    ]
+    "plugins": [],
+    "extra": {
+      "eas": {
+        "projectId": "3288df11-6e1a-4ffa-ad1c-bfebab6c0f9c"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-7215370286680655~7120215615",
+    "ios_app_id": "ca-app-pub-7215370286680655~7120215615"
   }
 }
